@@ -2,150 +2,743 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAMPIONS 26.0 Maths Special LIVE - Subjects</title>
     <style>
-        /* Base Reset */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8fafc;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-            color: #1e293b;
+            box-sizing: border-box;
         }
 
-        /* Premium Header */
-        .header {
-            background: #ffffff;
-            padding: 55px 20px 20px 20px;
-            position: sticky;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #000;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .modal-overlay {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #e2e8f0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             display: flex;
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            z-index: 1000;
+            padding: 20px;
         }
 
-        .back-icon {
-            font-size: 32px;
-            color: #2563eb;
-            margin-right: 12px;
-            line-height: 0;
-            margin-top: -4px;
+        .modal-overlay.hidden {
+            display: none;
         }
 
-        .title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.5px;
+        .modal-content {
+            background: linear-gradient(to bottom, #1a2a1a 0%, #0d1a0d 100%);
+            border-radius: 25px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #2d4a2d;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
-        /* List Styling */
-        .container {
-            padding: 16px;
-        }
-
-        /* Premium Card Design */
-        .item-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-            transition: all 0.2s ease;
-        }
-
-        .item-card:active {
-            transform: scale(0.97);
-            background-color: #f1f5f9;
-        }
-
-        .number-tag {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            color: #2563eb;
-            border-radius: 12px;
+        .whatsapp-icon {
+            width: 90px;
+            height: 90px;
+            background: #25D366;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+        }
+
+        .modal-title {
+            color: white;
+            font-size: 32px;
             font-weight: 700;
-            font-size: 14px;
-            margin-right: 15px;
-            flex-shrink: 0;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
-        .topic-name {
-            font-size: 15px;
+        .modal-subtitle {
+            color: #8a8a8a;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .modal-updates {
+            color: #25D366;
+            font-size: 18px;
             font-weight: 600;
-            color: #334155;
-            flex-grow: 1;
-            text-transform: uppercase;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
         }
 
-        .chevron {
-            width: 8px;
-            height: 8px;
-            border-top: 2.5px solid #cbd5e1;
-            border-right: 2.5px solid #cbd5e1;
-            transform: rotate(45deg);
-            margin-right: 5px;
+        .join-btn {
+            background: #25D366;
+            color: #000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
 
-        ::-webkit-scrollbar {
+        .join-btn:active {
+            transform: scale(0.98);
+        }
+
+        .join-btn:hover {
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .join-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #000;
+        }
+
+        .already-joined {
+            color: #5a5a5a;
+            font-size: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .already-joined:hover {
+            color: #7a7a7a;
+        }
+
+        .header {
+            background: transparent;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-btn {
             display: none;
+        }
+
+        .header-title {
+            color: WHITE;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        .subject-card {
+            background: #1E1E26;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            font-size: 17px;
+            color: #FFFFFF;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(98, 110, 239, 0.2);
+            border-bottom: 2px solid #626EEF;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-align: center;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #626EEF 0%, #D4AF37 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .subject-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .subject-card:active {
+            transform: scale(0.98);
+        }
+
+        .subject-card:hover {
+            box-shadow: 0 6px 20px rgba(98, 110, 239, 0.4);
+            transform: translateY(-3px);
+            border-bottom-color: #D4AF37;
+        }
+
+        .chapter-list {
+            display: none;
+        }
+
+        .chapter-list.active {
+            display: block;
+        }
+
+        .chapter-card {
+            background: #2a2a35;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #FFFFFF;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #25D366;
+            text-decoration: none;
+            display: block;
+        }
+
+        .chapter-card:hover {
+            background: #353542;
+            transform: translateX(5px);
+        }
+
+        .chapter-card:active {
+            transform: scale(0.98);
+        }
+
+        .back-to-subjects {
+            background: #626EEF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-subjects:hover {
+            background: #4a58e8;
+        }
+
+        .subject-title {
+            color: #25D366;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #25D366;
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 35px 25px;
+            }
+
+            .modal-title {
+                font-size: 28px;
+            }
+
+            .whatsapp-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .whatsapp-icon svg {
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="whatsapp-icon">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.816.736 5.464 2.014 7.762L.064 30.935l7.516-1.97A15.937 15.937 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.4 0-4.658-.636-6.616-1.746l-.473-.28-4.91 1.287 1.31-4.785-.308-.492A13.283 13.283 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
+                    <path d="M12.136 9.52c-.285-.632-.586-.645-.858-.656-.222-.009-.476-.008-.73-.008-.255 0-.668.096-.1018.475-.366.38-1.397 1.365-1.397 3.328 0 1.964 1.429 3.862 1.628 4.127.198.265 2.8 4.272 6.782 5.992.947.409 1.688.654 2.265.837.951.302 1.816.26 2.5.157.762-.114 2.347-.96 2.678-1.887.331-.927.331-1.722.232-1.887-.1-.165-.365-.265-.762-.464-.397-.199-2.348-1.159-2.713-1.291-.365-.133-.631-.199-.897.199-.265.397-1.03 1.291-1.262 1.557-.232.265-.464.298-.861.1-.397-.2-1.678-.619-3.196-1.973-1.182-1.053-1.98-2.354-2.212-2.751-.232-.397-.025-.612.175-.81.179-.178.397-.464.596-.696.198-.232.265-.398.397-.663.133-.265.066-.497-.033-.696-.1-.199-.897-2.162-1.229-2.96z"/>
+                </svg>
+            </div>
+            <div class="modal-title">OFFICIAL CHANNEL</div>
+            <div class="modal-subtitle">Join kar lo more free apps ke liye.</div>
+            <div class="modal-updates">ALL NEW UPDATES</div>
+            <a href="https://whatsapp.com/channel/0029Vb7dU6OFi8xZakWrnz42" class="join-btn" target="_blank">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.816.736 5.464 2.014 7.762L.064 30.935l7.516-1.97A15.937 15.937 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.4 0-4.658-.636-6.616-1.746l-.473-.28-4.91 1.287 1.31-4.785-.308-.492A13.283 13.283 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
+                    <path d="M12.136 9.52c-.285-.632-.586-.645-.858-.656-.222-.009-.476-.008-.73-.008-.255 0-.668.096-.1018.475-.366.38-1.397 1.365-1.397 3.328 0 1.964 1.429 3.862 1.628 4.127.198.265 2.8 4.272 6.782 5.992.947.409 1.688.654 2.265.837.951.302 1.816.26 2.5.157.762-.114 2.347-.96 2.678-1.887.331-.927.331-1.722.232-1.887-.1-.165-.365-.265-.762-.464-.397-.199-2.348-1.159-2.713-1.291-.365-.133-.631-.199-.897.199-.265.397-1.03 1.291-1.262 1.557-.232.265-.464.298-.861.1-.397-.2-1.678-.619-3.196-1.973-1.182-1.053-1.98-2.354-2.212-2.751-.232-.397-.025-.612.175-.81.179-.178.397-.464.596-.696.198-.232.265-.398.397-.663.133-.265.066-.497-.033-.696-.1-.199-.897-2.162-1.229-2.96z"/>
+                </svg>
+                JOIN NOW
+            </a>
+            <div class="already-joined" onclick="closeModal()">I have already joined</div>
+        </div>
+    </div>
 
     <div class="header">
-        <span class="back-icon">&#8249;</span>
-        <div class="title">SSC GD REASONING</div>
+        <button class="back-btn"></button>
+        <div class="header-title"></div>
     </div>
 
-    <div class="container">
-        <div class="item-card"><div class="number-tag">01</div><div class="topic-name">ALPHABET TEST</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">02</div><div class="topic-name">CALENDAR</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">03</div><div class="topic-name">COUNTING - FIGURE</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">04</div><div class="topic-name">DICE</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">05</div><div class="topic-name">DIRECTION</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">06</div><div class="topic-name">CUBE / CUBOID</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">07</div><div class="topic-name">DIRECTON SENSE</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">08</div><div class="topic-name">RANKING ARRANGEMENT</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">09</div><div class="topic-name">SEATING ARRANGEMENT</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">10</div><div class="topic-name">BLOOD RELATION</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">11</div><div class="topic-name">ALPHABET SERIES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">12</div><div class="topic-name">LETTER SERIES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">13</div><div class="topic-name">NUMBER SERIES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">14</div><div class="topic-name">MISSING NUMBER</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">15</div><div class="topic-name">ANALOGY OR SIMILARITY OF FIGURES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">16</div><div class="topic-name">ALPHANUMARIC–SYMBOL SERIES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">17</div><div class="topic-name">CODING / DECODING</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">18</div><div class="topic-name">ANALOGY</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">19</div><div class="topic-name">CLOCK</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">20</div><div class="topic-name">SIMILARITY</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">21</div><div class="topic-name">ODD ONE OUT</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">22</div><div class="topic-name">MATHEMATICAL OPERATION</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">23</div><div class="topic-name">VENN DIAGRAM</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">24</div><div class="topic-name">SYLLOGISM</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">25</div><div class="topic-name">ARRANGEMENT OF WORDS</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">26</div><div class="topic-name">CODED INEQUALITY</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">27</div><div class="topic-name">CAUSE AND EFFECT</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">28</div><div class="topic-name">MIRROR AND WATER IMAGE</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">29</div><div class="topic-name">PAPER CUTTING & FOLDING</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">30</div><div class="topic-name">EMBEDDED FIGURES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">31</div><div class="topic-name">FIGURE COMPLETION</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">32</div><div class="topic-name">CLASSIFICATION OF FIGURE</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">33</div><div class="topic-name">DOT SITUATION</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">34</div><div class="topic-name">FIGURE SERIES</div><div class="chevron"></div></div>
-        <div class="item-card"><div class="number-tag">35</div><div class="topic-name">AGE PROBLEM</div><div class="chevron"></div></div>
+    <div class="content" id="mainContent">
+        <!-- Subjects List (Default View) -->
+        <div id="subjectsList">
+            <!-- All subjects will be dynamically added here -->
+        </div>
+
+        <!-- Chapters Lists (Hidden by default) -->
+        <div id="chaptersContainer">
+            <!-- All chapter lists will be dynamically added here -->
+        </div>
     </div>
 
+    <script>
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+
+        // Show modal on page load
+        window.addEventListener('load', function() {
+            document.getElementById('modalOverlay').classList.remove('hidden');
+            
+            // Load subjects after modal
+            setTimeout(loadSubjects, 100);
+        });
+
+        // New subjects data with all the subjects you provided
+        const subjectsData = [
+            {
+                name: "ᴀʟᴘʜᴀʙᴇᴛ ᴛᴇꜱᴛ",
+                id: "alphabet-test",
+                chapters: [
+                    { name: "alphabet test 01", link: "#" },
+                    { name: "alphabet test 02", link: "#" },
+                    { name: "alphabet test 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴀʟᴇɴᴅᴀʀ",
+                id: "calendar",
+                chapters: [
+                    { name: "calendar 01", link: "#" },
+                    { name: "calendar 02", link: "#" },
+                    { name: "calendar 03", link: "#" },
+                    { name: "calendar 04", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴏᴜɴᴛɪɴɢ - ꜰɪɢᴜʀᴇ",
+                id: "counting-figure",
+                chapters: [
+                    { name: "counting - figure 01", link: "#" },
+                    { name: "counting - figure 02", link: "#" },
+                    { name: "counting - figure 03", link: "#" },
+                    { name: "counting - figure 04", link: "#" },
+                    { name: "counting - figure 05", link: "#" },
+                    { name: "counting - figure 06", link: "#" }
+                ]
+            },
+            {
+                name: "ᴅɪᴄᴇ",
+                id: "dice",
+                chapters: [
+                    { name: "dice", link: "#" },
+                    { name: "dice 01", link: "#" },
+                    { name: "dice 02", link: "#" },
+                    { name: "dice 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴅɪʀᴇᴄᴛɪᴏɴ",
+                id: "direction",
+                chapters: [
+                    { name: "direction 01", link: "#" },
+                    { name: "direction 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴜʙᴇ & ᴄᴜʙᴏɪᴅ",
+                id: "cube-cuboid",
+                chapters: [
+                    { name: "cube & cuboid 01", link: "#" },
+                    { name: "cube & cuboid 02", link: "#" },
+                    { name: "cube & cuboid 03", link: "#" },
+                    { name: "cube & cuboid 04", link: "#" }
+                ]
+            },
+            {
+                name: "ᴅɪʀᴇᴄᴛɪᴏɴ ꜱᴇɴꜱᴇ (दिशा ज्ञान)",
+                id: "direction-sense",
+                chapters: [
+                    { name: "direction sense 01", link: "#" },
+                    { name: "direction sense 02", link: "#" },
+                    { name: "direction sense 03", link: "#" }
+                ]
+            },
+            {
+                name: "ʀᴀɴᴋɪɴɢ ᴀʀʀᴀɴɢᴇᴍᴇɴᴛ",
+                id: "ranking-arrangement",
+                chapters: [
+                    { name: "ranking arrangement 01", link: "#" },
+                    { name: "ranking arrangement 02", link: "#" },
+                    { name: "ranking arrangement 03", link: "#" }
+                ]
+            },
+            {
+                name: "ꜱᴇᴀᴛɪɴɢ ᴀʀʀᴀɴɢᴇᴍᴇɴᴛ",
+                id: "seating-arrangement",
+                chapters: [
+                    { name: "seating arrangement 01", link: "#" },
+                    { name: "seating arrangement 02", link: "#" },
+                    { name: "seating arrangement 03", link: "#" }
+                ]
+            },
+            {
+                name: "ʙʟᴏᴏᴅ ʀᴇʟᴀᴛɪᴏɴ",
+                id: "blood-relation",
+                chapters: [
+                    { name: "blood relation 01", link: "#" },
+                    { name: "blood relation 02", link: "#" },
+                    { name: "blood relation 03", link: "#" },
+                    { name: "blood relation 04", link: "#" },
+                    { name: "blood relation 05", link: "#" },
+                    { name: "blood relation 06", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀʟᴘʜᴀʙᴇᴛ ꜱᴇʀɪᴇꜱ",
+                id: "alphabet-series",
+                chapters: [
+                    { name: "alphabet series 01", link: "#" },
+                    { name: "alphabet series 02", link: "#" }
+                ]
+            },
+            {
+                name: "ʟᴇᴛᴛᴇʀ ꜱᴇʀɪᴇꜱ",
+                id: "letter-series",
+                chapters: [
+                    { name: "letter series 01", link: "#" },
+                    { name: "letter series 02", link: "#" }
+                ]
+            },
+            {
+                name: "ɴᴜᴍʙᴇʀ ꜱᴇʀɪᴇꜱ",
+                id: "number-series",
+                chapters: [
+                    { name: "number series 01", link: "#" },
+                    { name: "number series 02", link: "#" },
+                    { name: "number series 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴍɪꜱꜱɪɴɢ ɴᴜᴍʙᴇʀ",
+                id: "missing-number",
+                chapters: [
+                    { name: "missing number 01", link: "#" },
+                    { name: "missing number 02", link: "#" },
+                    { name: "missing number 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀɴᴀʟᴏɢʏ ᴏʀ ꜱɪᴍɪʟᴀʀɪᴛʏ ᴏꜰ ꜰɪɢᴜʀᴇꜱ",
+                id: "analogy-similarity",
+                chapters: [
+                    { name: "analogy / similarity of figures 01", link: "#" },
+                    { name: "analogy / similarity of figures 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀʟᴘʜᴀɴᴜᴍᴇʀɪᴄ ꜱʏᴍʙᴏʟ ꜱᴇʀɪᴇꜱ",
+                id: "alphanumeric-symbol",
+                chapters: [
+                    { name: "alphanumeric symbol 01", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴏᴅɪɴɢ - ᴅᴇᴄᴏᴅɪɴɢ",
+                id: "coding-decoding",
+                chapters: [
+                    { name: "coding - decoding 01", link: "#" },
+                    { name: "coding - decoding 02", link: "#" },
+                    { name: "coding - decoding 03", link: "#" },
+                    { name: "coding - decoding 04", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀɴᴀʟᴏɢʏ",
+                id: "analogy",
+                chapters: [
+                    { name: "analogy 01", link: "#" },
+                    { name: "analogy 02", link: "#" },
+                    { name: "analogy 03", link: "#" },
+                    { name: "analogy 04", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄʟᴏᴄᴋ",
+                id: "clock",
+                chapters: [
+                    { name: "clock 01", link: "#" },
+                    { name: "clock 02", link: "#" },
+                    { name: "clock 03", link: "#" },
+                    { name: "clock 04", link: "#" }
+                ]
+            },
+            {
+                name: "ꜱɪᴍɪʟᴀʀɪᴛʏ",
+                id: "similarity",
+                chapters: [
+                    { name: "similarity 01", link: "#" },
+                    { name: "similarity 02", link: "#" },
+                    { name: "similarity 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴏᴅᴅ ᴏɴᴇ ᴏᴜᴛ",
+                id: "odd-one-out",
+                chapters: [
+                    { name: "odd one out 01", link: "#" },
+                    { name: "odd one out 02", link: "#" },
+                    { name: "odd one out 03", link: "#" },
+                    { name: "odd one out 04", link: "#" }
+                ]
+            },
+            {
+                name: "ᴍᴀᴛʜᴇᴍᴀᴛɪᴄᴀʟ - ᴏᴘᴇʀᴀᴛɪᴏɴ",
+                id: "mathematical-operation",
+                chapters: [
+                    { name: "mathematical operation 01", link: "#" },
+                    { name: "mathematical operation 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴠᴇɴɴ ᴅɪᴀɢʀᴀᴍ",
+                id: "venn-diagram",
+                chapters: [
+                    { name: "venn diagram 01", link: "#" },
+                    { name: "venn diagram 02", link: "#" },
+                    { name: "venn diagram 03", link: "#" }
+                ]
+            },
+            {
+                name: "ꜱʏʟʟᴏɢɪꜱᴍ (युक्तिवाक्य)",
+                id: "syllogism",
+                chapters: [
+                    { name: "syllogism 01", link: "#" },
+                    { name: "syllogism 02", link: "#" },
+                    { name: "syllogism 03", link: "#" },
+                    { name: "syllogism 04", link: "#" },
+                    { name: "syllogism 05", link: "#" },
+                    { name: "syllogism 06", link: "#" },
+                    { name: "syllogism 07", link: "#" },
+                    { name: "syllogism 08", link: "#" },
+                    { name: "syllogism 09", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀʀʀᴀɴɢᴇᴍᴇɴᴛ ᴏꜰ ᴡᴏʀᴅꜱ",
+                id: "arrangement-of-words",
+                chapters: [
+                    { name: "arrangement of words 01", link: "#" },
+                    { name: "arrangement of words 02", link: "#" },
+                    { name: "arrangement of words 03", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴏᴅᴇᴅ ɪɴᴇQᴜᴀʟɪᴛʏ",
+                id: "coded-inequality",
+                chapters: [
+                    { name: "coded inequality 01", link: "#" },
+                    { name: "coded inequality 02", link: "#" },
+                    { name: "coded inequality 03", link: "#" },
+                    { name: "coded inequality 04", link: "#" },
+                    { name: "coded inequality 05", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄᴀᴜꜱᴇ ᴀɴᴅ ᴇꜰꜰᴇᴄᴛ",
+                id: "cause-and-effect",
+                chapters: [
+                    { name: "cause and effect 01", link: "#" },
+                    { name: "cause and effect 02", link: "#" },
+                    { name: "cause and effect 03", link: "#" },
+                    { name: "cause and effect 04", link: "#" }
+                ]
+            },
+            {
+                name: "ᴍɪʀʀᴏʀ ᴀɴᴅ ᴡᴀᴛᴇʀ ɪᴍᴀɢᴇ",
+                id: "mirror-water-image",
+                chapters: [
+                    { name: "mirror & water image 01", link: "#" },
+                    { name: "mirror & water image 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴘᴀᴘᴇʀ ᴄᴜᴛᴛɪɴɢ & ꜰᴏʟᴅɪɴɢ",
+                id: "paper-cutting-folding",
+                chapters: [
+                    { name: "paper cutting & folding 01", link: "#" },
+                    { name: "paper cutting & folding 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴇᴍʙᴇᴅᴅᴇᴅ ꜰɪɢᴜʀᴇꜱ",
+                id: "embedded-figures",
+                chapters: [
+                    { name: "embedded figures 01", link: "#" },
+                    { name: "embedded figures 02", link: "#" }
+                ]
+            },
+            {
+                name: "ꜰɪɢᴜʀᴇ ᴄᴏᴍᴘʟᴇᴛɪᴏɴ",
+                id: "figure-completion",
+                chapters: [
+                    { name: "figure completion 01", link: "#" },
+                    { name: "figure completion 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴄʟᴀꜱꜱɪꜰɪᴄᴀᴛɪᴏɴ ᴏꜰ ꜰɪɢᴜʀᴇ",
+                id: "classification-of-figure",
+                chapters: [
+                    { name: "classification of figure 01", link: "#" }
+                ]
+            },
+            {
+                name: "ᴅᴏᴛ ꜱɪᴛᴜᴀᴛɪᴏɴ",
+                id: "dot-situation",
+                chapters: [
+                    { name: "dot situation 01", link: "#" }
+                ]
+            },
+            {
+                name: "ꜰɪɢᴜʀᴇ ꜱᴇʀɪᴇꜱ",
+                id: "figure-series",
+                chapters: [
+                    { name: "figure series 01", link: "#" },
+                    { name: "figure series 02", link: "#" }
+                ]
+            },
+            {
+                name: "ᴀɢᴇ ᴘʀᴏʙʟᴇᴍ",
+                id: "age-problem",
+                chapters: [
+                    { name: "age problem 01", link: "#" },
+                    { name: "age problem 02", link: "#" }
+                ]
+            }
+        ];
+
+        function loadSubjects() {
+            const subjectsList = document.getElementById('subjectsList');
+            const chaptersContainer = document.getElementById('chaptersContainer');
+            
+            // Clear existing content
+            subjectsList.innerHTML = '';
+            chaptersContainer.innerHTML = '';
+            
+            // Add subjects
+            subjectsData.forEach((subject, index) => {
+                // Create subject card
+                const subjectCard = document.createElement('div');
+                subjectCard.className = 'subject-card';
+                subjectCard.textContent = subject.name;
+                subjectCard.onclick = () => showChapters(subject.id);
+                subjectsList.appendChild(subjectCard);
+                
+                // Create chapter list for this subject
+                const chapterList = document.createElement('div');
+                chapterList.className = 'chapter-list';
+                chapterList.id = `chapters-${subject.id}`;
+                
+                // Add back button
+                const backButton = document.createElement('button');
+                backButton.className = 'back-to-subjects';
+                backButton.textContent = '← Back to Subjects';
+                backButton.onclick = showSubjects;
+                chapterList.appendChild(backButton);
+                
+                // Add subject title
+                const subjectTitle = document.createElement('div');
+                subjectTitle.className = 'subject-title';
+                subjectTitle.textContent = subject.name;
+                chapterList.appendChild(subjectTitle);
+                
+                // Add chapters
+                subject.chapters.forEach(chapter => {
+                    const chapterCard = document.createElement('a');
+                    chapterCard.className = 'chapter-card';
+                    chapterCard.href = chapter.link;
+                    chapterCard.target = '_blank';
+                    chapterCard.textContent = chapter.name;
+                    chapterList.appendChild(chapterCard);
+                });
+                
+                chaptersContainer.appendChild(chapterList);
+            });
+        }
+
+        function showChapters(subjectId) {
+            // Hide all subjects
+            document.getElementById('subjectsList').style.display = 'none';
+            
+            // Hide all chapter lists
+            const allChapterLists = document.querySelectorAll('.chapter-list');
+            allChapterLists.forEach(list => {
+                list.classList.remove('active');
+            });
+            
+            // Show the selected chapter list
+            const selectedChapterList = document.getElementById(`chapters-${subjectId}`);
+            if (selectedChapterList) {
+                selectedChapterList.classList.add('active');
+            }
+        }
+
+        function showSubjects() {
+            // Show subjects list
+            document.getElementById('subjectsList').style.display = 'block';
+            
+            // Hide all chapter lists
+            const allChapterLists = document.querySelectorAll('.chapter-list');
+            allChapterLists.forEach(list => {
+                list.classList.remove('active');
+            });
+        }
+
+        // Initialize
+        loadSubjects();
+    </script>
 </body>
-</html>
+    </html>
